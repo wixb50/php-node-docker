@@ -49,7 +49,6 @@ RUN apt-get update && \
         php7.1-bcmath \
         php7.1-mongodb \
         php7.1-redis \
-        php7.1-SeasLog \
         php7.1-sqlite3 \
         php7.1-xmlrpc \
         pkg-config \
