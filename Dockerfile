@@ -23,7 +23,7 @@ RUN apt-get install -y \
     nano
 
 # Install Nginx
-run apt-get install -y nginx
+RUN apt-get install -y nginx
 
 # Add the "PHP 7" ppa
 RUN apt-get install -y software-properties-common && \
@@ -46,11 +46,22 @@ RUN apt-get update && \
         php7.1-gd \
         php7.1-dev \
         php7.1-soap \
+        php7.1-bcmath \
+        php7.1-mongodb \
+        php7.1-redis \
+        php7.1-SeasLog \
+        php7.1-sqlite3 \
+        php7.1-xmlrpc \
         pkg-config \
         libcurl4-openssl-dev \
         libedit-dev \
         libssl-dev \
         libxml2-dev
+
+ENV PHP_INI_DIR=/etc/php/7.1/cli
+COPY docker-php-ext-enable /usr/local/bin/
+RUN yes '' | pecl install seaslog && \
+    docker-php-ext-enable seaslog
 
 # Install Supervisord
 RUN apt-get install -y supervisor
