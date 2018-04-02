@@ -59,7 +59,8 @@ RUN apt-get update && \
 
 ENV PHP_INI_DIR=/etc/php/7.1/cli
 COPY docker-php-ext-enable /usr/local/bin/
-RUN yes '' | pecl install seaslog && \
+RUN chmod +x /usr/local/bin/docker-php-ext-enable && \
+    yes '' | pecl install seaslog && \
     docker-php-ext-enable seaslog
 
 # Install Supervisord
